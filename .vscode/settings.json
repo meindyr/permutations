@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Eva 01 Theme V2.0",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#520B54",
+        "titleBar.activeBackground": "#730F76",
+        "titleBar.activeForeground": "#FEFBFE"
+    },
+}

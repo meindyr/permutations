@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div x-data="main"
+        x-init="calcCombinations"
+        class="wrapper"
+        onselectstart="return false;">
+            <div class="nav">
+                <div class="header">
+                    <div class="buttons">
+                        <span :class="{'enabled' : page > 1 }" @click="prev"><</span>
+                        <span :class="{'enabled' : page < pages }" @click="next">></span>
+                    </div>
+                    <template x-for="color in colors_a">
+                        <span :style="'background-color:'+color"></span>
+                    </template>
+                </div>
+            </div>
+            <div class="table">
+                <h1 x-text="'[ P(' + ((page * step - step) + 1).toString() + '), ... , P(' + (page * step).toString() + ') ] ; P* = ' + (permutations.length).toString()"></h1>
+                <template x-for="permutation in permutations">
+                    <template x-if="permutation[0] > (page * step - step)  && permutation[0] <= page * step">
+                        <div class="permutation"
+                            :class="{'failed' : !permutation[1]}">
+                            <span>
+                                <button x-show="permutation[1]" @click="permutation[1] = false" x-text="'P('+permutation[0]+')'"></button>
+                                <button x-show="!permutation[1]" @click="permutation[1] = true" x-text="'P('+permutation[0]+')'" style="text-decoration:line-through;"></button>
+                            </span>
+                            <span class="color" :style="'background-color:'+ permutation[2]"></span>
+                            <span class="color" :style="'background-color:'+ permutation[3]"></span>
+                            <span class="color" :style="'background-color:'+ permutation[4]"></span>
+                            <span class="color" :style="'background-color:'+ permutation[5]"></span>
+                            <span class="color" :style="'background-color:'+ permutation[6]"></span>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div> 
+    </div>
+</body>
+</html> 
